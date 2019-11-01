@@ -1,134 +1,64 @@
-import React, { Component } from 'react'
- 
+import React, { Component } from "react";
+import PropTypes from 'prop-types'
 import {
-  StyleSheet,
-  View,
-  ScrollView,
-  TouchableHighlight
+	View,
+	Image,
+    Text,
+    Button,
+    StyleSheet,
+	ImageBackground,
+	TouchableHighlight,
 } from 'react-native';
-import { Image, Text, H3, List, ListItem, CheckBox, Badge, Left, Right } from 'native-base';
-import HomeHeader from '../components/HomeHeader';
+import Orientation from 'react-native-orientation-locker';
+
 import { connect } from 'react-redux';
 
-const mapStateToProps = store => ({
-  token: store.loggedIn.token,
-  avisoToast: store.loggedIn.avisoToast
-});
- 
-class HomeScreen extends Component {
-
-  componentDidMount = () => {
-  }
-
-  render() {
-    const { navigation } = this.props;
-    return (
-      <View style={{flex:1}}>
-        <HomeHeader
-          title={<View style={styles.logo}>
-                  <Image source={require("../assets/title_fofuu.png")} style={{width:100,height:30}} />
-                  <Text style={{color:"white", fontSize:20, paddingLeft:15, fontWeight:"bold"}}>FAMÍLIA</Text>
-                </View>
-          }
-          navigation={ navigation }
-          retornar={true} />
-        <ScrollView style={styles.container}>
-          <View style={{paddingBottom:10}}>
-            <H3 style={{color:"#3b3b3b"}}>Atividades Familiares</H3>
-            <Text style={{color:"#d92e56"}}>semana 1</Text>
-          </View>
-          <List>
-            <ListItem onPress={()=>{navigation.navigate("Loc")}} noIndent style={{padding:10, backgroundColor:"white", marginBottom:10}}>
-                <Left style={{flexDirection:"column"}}>
-                  <View>
-                    <Badge style={{backgroundColor:"#d92e56"}}>
-                      <Text>Atividade 1</Text>
-                    </Badge>
-                  </View>
-                  <Text>
-                    aaaaa gggda a d asd a   dadasdasdasdas f asdsafafasf  fadg gag g fa ggf ggf ag saadffa afdafdf fadfa
-                  </Text>
-                </Left>
-                <Right>
-                  <CheckBox style={{marginRight:10}} checked={true} />
-                </Right>
-            </ListItem>
-            <ListItem onPress={()=>{navigation.navigate("Loc")}} noIndent style={{padding:10, backgroundColor:"white", marginBottom:10}}>
-                <Left style={{flexDirection:"column"}}>
-                  <View>
-                    <Badge style={{backgroundColor:"#d92e56"}}>
-                      <Text>Atividade 1</Text>
-                    </Badge>
-                  </View>
-                  <Text>
-                    aaaaa gggda a d asd a   dadasdasdasdas f asdsafafasf  fadg gag g fa ggf ggf ag saadffa afdafdf fadfa
-                  </Text>
-                </Left>
-                <Right>
-                  <CheckBox style={{marginRight:10}} checked={false} />
-                </Right>
-            </ListItem> 
-            <ListItem onPress={()=>{navigation.navigate("Loc")}} noIndent style={{padding:10, backgroundColor:"white", marginBottom:10}}>
-                <Left style={{flexDirection:"column"}}>
-                  <View>
-                    <Badge style={{backgroundColor:"#d92e56"}}>
-                      <Text>Atividade 1</Text>
-                    </Badge>
-                  </View>
-                  <Text>
-                    aaaaa gggda a d asd a   dadasdasdasdas f asdsafafasf  fadg gag g fa ggf ggf ag saadffa afdafdf fadfa
-                  </Text>
-                </Left>
-                <Right>
-                  <CheckBox style={{marginRight:10}} checked={true} />
-                </Right>
-            </ListItem> 
-            <ListItem onPress={()=>{navigation.navigate("Loc")}} noIndent style={{padding:10, backgroundColor:"white", marginBottom:10}}>
-                <Left style={{flexDirection:"column"}}>
-                  <View>
-                    <Badge style={{backgroundColor:"#d92e56"}}>
-                      <Text>Atividade 1</Text>
-                    </Badge>
-                  </View>
-                  <Text>
-                    aaaaa gggda a d asd a   dadasdasdasdas f asdsafafasf  fadg gag g fa ggf ggf ag saadffa afdafdf fadfa
-                  </Text>
-                </Left>
-                <Right>
-                  <CheckBox style={{marginRight:10}} checked={false} />
-                </Right>
-            </ListItem> 
-          </List>
-        </ScrollView>
-      </View>
-    );
-  };
+function mapDispatchToProps(dispatch) {
+    return({
+        clickMuda: (item,tipo) => {
+            dispatch({ type: tipo, valor:item})
+        }
+    });
 }
- 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#dcd9d9',
-    padding:10,
-  },
-  label: {
-    margin: 10,
-    padding: 5,
-  },
-  itenMenu: {
-    padding: 10,
-    flexGrow: 1,
-    flexBasis:0
-  },
-  buttonStyle: {
-    backgroundColor:"#1bb969",
-    flexDirection:"column",
-    minHeight: 100
-  }
-});
 
-export default connect(mapStateToProps)(HomeScreen);
- 
-// AppRegistry.registerComponent('HomeScreen', () => HomeScreen);
- 
-// module.exports = HomeScreen;
+export class HomeScreen extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {}
+	}
+
+	componentDidMount() {
+		
+	}
+
+
+	render() {
+		Orientation.lockToLandscape();
+		return (
+			<ImageBackground source={require("../assets/back_fofuu.png")} style={{width: '100%', height: '100%', flexDirection:"column-reverse"}}>
+				<View style={styles.content} on>
+					<TouchableHighlight onPress={()=>{this.props.navigation.navigate('BemVindos')}}>
+						<View>
+							<Image source={require("../assets/title_fofuu.png")} style={{width:200,height:70}} />
+							<Text style={{color:"white", fontSize:20, paddingLeft:15, fontWeight:"bold"}}>FAMÍLIA</Text>
+						</View>
+					</TouchableHighlight>
+				</View>
+			</ImageBackground>
+		)
+	}
+}
+
+const styles = StyleSheet.create({
+	content: {
+        justifyContent: 'center',
+		padding: 20
+	},
+})
+
+HomeScreen.propTypes = {
+	navigation: PropTypes.object.isRequired
+}
+
+export default connect(null,mapDispatchToProps)(HomeScreen);

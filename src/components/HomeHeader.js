@@ -33,7 +33,7 @@ class HomeHeader extends Component {
     handleDeslogar() {
         const { navigation } = this.props;
         this.props.clickMuda(null,'LOGGED_OUT')
-        navigation.navigate("Login");
+        navigation.navigate("Home");
     }
 
     render() {
@@ -44,7 +44,7 @@ class HomeHeader extends Component {
             <Header noShadow androidStatusBarColor={'#d92e56'} style={{backgroundColor:bgColor}}>
                 {retornar &&
                     <Left>
-                        <Button transparent onPress={() =>{navigation.navigate("Login", {back: true})}}>
+                        <Button transparent onPress={() =>{navigation.navigate("Home", {back: true})}}>
                             <Icon name="ios-arrow-back"  style={{fontSize: 30, color:'#fff'}}/>
                         </Button>
                     </Left>

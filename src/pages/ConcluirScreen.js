@@ -15,7 +15,7 @@ const mapStateToProps = store => ({
   avisoToast: store.loggedIn.avisoToast
 });
  
-class LocationScreen extends Component {
+class ConcluirScreen extends Component {
 
   componentDidMount = () => {
   }
@@ -50,7 +50,7 @@ class LocationScreen extends Component {
               <Item rounded>
                 <Textarea style={{height:150, flexWrap:"wrap"}} placeholder='O que você e seu filho acharam da atividade? Insira aqui seu feedback!'/>
               </Item>
-              <Button success onPress={(e)=>{navigation.navigate("Home")}} style={{marginTop:20, alignSelf:"flex-end"}} rounded bordered>
+              <Button success onPress={(e)=>{navigation.navigate("Atividades")}} style={{marginTop:20, alignSelf:"flex-end"}} rounded bordered>
                 <Icon type="FontAwesome" name='check' />
                 <Text>Concluir</Text>
               </Button>
@@ -83,4 +83,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps)(LocationScreen);
+export default connect(mapStateToProps)(ConcluirScreen);

@@ -2,31 +2,20 @@ import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import NavigationService from './utils/NavigationService';
-import LoginScreen from './pages/LoginScreen';
 import HomeScreen from './pages/HomeScreen';
-import QRGenerateScreen from './pages/QRGenerateScreen';
-import QRScanScreen from './pages/QRScanScreen';
-import LocationScreen from './pages/LocationScreen';
-import NFCScreen from './pages/NFCScreen';
-import RegistraMercadoriaScreen from './pages/RegistraMercadoriaScreen';
-import HistoricoScreen from './pages/HistoricoScreen';
-import IniciarScreen from './pages/IniciarRastreamentoScreen';
-import ConcluirScreen from './pages/ConcluirRastreamentoScreen';
+import AtividadesScreen from './pages/AtividadesScreen';
+import ConcluirScreen from './pages/ConcluirScreen';
+import BemVindosScreen from './pages/BemVindosScreen';
+
 
 const MainScreen = createStackNavigator(
     {
-        Iniciar: IniciarScreen,
         Concluir: ConcluirScreen,
-        Qrread: QRScanScreen,
-        Home: HomeScreen,
-        Qrwrite: QRGenerateScreen,
-        Loc: LocationScreen,
-        Nfc: NFCScreen,
-        Mercadoria: RegistraMercadoriaScreen,
-        Historico: HistoricoScreen,
+        Atividades: AtividadesScreen,
+        BemVindos: BemVindosScreen,
     },
     {
-        initialRouteName: 'Historico',
+        initialRouteName: 'BemVindos',
         headerMode: 'none',
         mode: 'card'
     }
@@ -34,7 +23,7 @@ const MainScreen = createStackNavigator(
 
 const AOLRotas = {
     MainScreen: MainScreen,
-    Login: LoginScreen
+    Home: HomeScreen
 }
 
 const RootStack = createStackNavigator(
@@ -45,7 +34,7 @@ const RootStack = createStackNavigator(
         }
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Home',
         headerMode: 'none',
         mode: 'card'
     }
